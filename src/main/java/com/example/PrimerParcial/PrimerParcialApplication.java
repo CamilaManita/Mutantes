@@ -11,6 +11,4 @@ public class PrimerParcialApplication {
 		SpringApplication.run(PrimerParcialApplication.class, args);
 		System.out.println("Primer parcial - Camila Manita");
 	}
-
-
 }
