@@ -45,7 +45,7 @@ https://mutantes-vvyg.onrender.com
 }
 ```
 
-- *GET* /stats - Returns a JSON with the number of mutants and humans verified. Example:
+- **GET** /stats - Returns a JSON with the number of mutants and humans verified. Example:
 
 ```json
 {
