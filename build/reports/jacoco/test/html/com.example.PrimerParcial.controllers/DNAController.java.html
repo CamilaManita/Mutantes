@@ -11,24 +11,24 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = &quot;*&quot;)
 @RequestMapping(path = &quot;api/dna&quot;)
-<span class="nc" id="L14">public class DNAController{</span>
+<span class="fc" id="L14">public class DNAController{</span>
     @Autowired
     DNAService dnaService;
 
     @PostMapping(&quot;/mutant/&quot;)
     public ResponseEntity&lt;?&gt; detect(@RequestBody DNARequest dnaRequest){
         try{
-<span class="nc" id="L21">            String dnaString = String.join(&quot;,&quot;, dnaRequest.getDna());</span>
+<span class="fc" id="L21">            String dnaString = String.join(&quot;,&quot;, dnaRequest.getDna());</span>
 
-<span class="nc" id="L23">            DNA dnaEntity = new DNA();</span>
-<span class="nc" id="L24">            dnaEntity.setDna(dnaString);</span>
+<span class="fc" id="L23">            DNA dnaEntity = new DNA();</span>
+<span class="fc" id="L24">            dnaEntity.setDna(dnaString);</span>
 
-<span class="nc" id="L26">            boolean isMutant = dnaService.isMutant(dnaEntity);</span>
+<span class="fc" id="L26">            boolean isMutant = dnaService.isMutant(dnaEntity);</span>
 
-<span class="nc bnc" id="L28" title="All 2 branches missed.">            if (isMutant) {</span>
-<span class="nc" id="L29">                return ResponseEntity.status(HttpStatus.OK).body(&quot;{\&quot;mutant\&quot;:\&quot;Mutante encontrado.\&quot;}&quot;);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            if (isMutant) {</span>
+<span class="fc" id="L29">                return ResponseEntity.status(HttpStatus.OK).body(&quot;{\&quot;mutant\&quot;:\&quot;Mutante encontrado.\&quot;}&quot;);</span>
             } else {
-<span class="nc" id="L31">                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(&quot;{\&quot;mutant\&quot;:\&quot;Mutante no encontrado.\&quot;}&quot;);</span>
+<span class="fc" id="L31">                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(&quot;{\&quot;mutant\&quot;:\&quot;Mutante no encontrado.\&quot;}&quot;);</span>
             }
 <span class="nc" id="L33">        } catch (Exception e) {</span>
 <span class="nc" id="L34">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;{\&quot;error\&quot;:\&quot;&quot; + e.getMessage() + &quot;\&quot;}&quot;);</span>

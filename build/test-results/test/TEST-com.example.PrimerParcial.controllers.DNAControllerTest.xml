@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.PrimerParcial.controllers.DNAControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-10-22T02:54:46" hostname="DESKTOP-F5U0FUP" time="0.522">
+<testsuite name="com.example.PrimerParcial.controllers.DNAControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-10-22T02:57:20" hostname="DESKTOP-F5U0FUP" time="0.495">
   <properties/>
-  <testcase name="detectMutant_ReturnsForbidden_WhenNotMutant()" classname="com.example.PrimerParcial.controllers.DNAControllerTest" time="0.492"/>
-  <testcase name="detectMutant_ReturnsOk_WhenMutantDetected()" classname="com.example.PrimerParcial.controllers.DNAControllerTest" time="0.026"/>
-  <system-out><![CDATA[2024-10-21T23:54:44.956-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.PrimerParcial.controllers.DNAControllerTest]: DNAControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-10-21T23:54:45.069-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.PrimerParcial.PrimerParcialApplication for test class com.example.PrimerParcial.controllers.DNAControllerTest
+  <testcase name="detectMutant_ReturnsForbidden_WhenNotMutant()" classname="com.example.PrimerParcial.controllers.DNAControllerTest" time="0.452"/>
+  <testcase name="detectMutant_ReturnsOk_WhenMutantDetected()" classname="com.example.PrimerParcial.controllers.DNAControllerTest" time="0.022"/>
+  <system-out><![CDATA[2024-10-21T23:57:19.526-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.PrimerParcial.controllers.DNAControllerTest]: DNAControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-10-21T23:57:19.594-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.PrimerParcial.PrimerParcialApplication for test class com.example.PrimerParcial.controllers.DNAControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -15,7 +15,7 @@
 
  :: Spring Boot ::                (v3.3.4)
 
-2024-10-21T23:54:45.260-03:00  WARN 6160 --- [PrimerParcial] [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
+2024-10-21T23:57:19.670-03:00  WARN 3900 --- [PrimerParcial] [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -24,12 +24,12 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-2024-10-21T23:54:45.268-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] c.e.P.controllers.DNAControllerTest      : Starting DNAControllerTest using Java 17.0.12 with PID 6160 (started by Cami in C:\Users\Cami\Documents\Facultad\Tercero\Desarrollo de Software\proyectos\PrimerParcial\PrimerParcial)
-2024-10-21T23:54:45.268-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] c.e.P.controllers.DNAControllerTest      : No active profile set, falling back to 1 default profile: "default"
-2024-10-21T23:54:46.559-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-10-21T23:54:46.560-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-10-21T23:54:46.570-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2024-10-21T23:54:46.586-03:00  INFO 6160 --- [PrimerParcial] [    Test worker] c.e.P.controllers.DNAControllerTest      : Started DNAControllerTest in 1.497 seconds (process running for 22.476)
+2024-10-21T23:57:19.670-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] c.e.P.controllers.DNAControllerTest      : Starting DNAControllerTest using Java 17.0.12 with PID 3900 (started by Cami in C:\Users\Cami\Documents\Facultad\Tercero\Desarrollo de Software\proyectos\PrimerParcial\PrimerParcial)
+2024-10-21T23:57:19.670-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] c.e.P.controllers.DNAControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2024-10-21T23:57:20.304-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-10-21T23:57:20.304-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-10-21T23:57:20.310-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2024-10-21T23:57:20.321-03:00  INFO 3900 --- [PrimerParcial] [    Test worker] c.e.P.controllers.DNAControllerTest      : Started DNAControllerTest in 0.712 seconds (process running for 27.491)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
