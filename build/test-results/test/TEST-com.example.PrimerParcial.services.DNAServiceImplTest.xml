@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.PrimerParcial.services.DNAServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-10-22T02:57:20" hostname="DESKTOP-F5U0FUP" time="0.377">
+<testsuite name="com.example.PrimerParcial.services.DNAServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-10-22T03:00:06" hostname="DESKTOP-F5U0FUP" time="0.405">
   <properties/>
-  <testcase name="testIsMutant_ReturnsTrue_WhenDnaExistsInRepository()" classname="com.example.PrimerParcial.services.DNAServiceImplTest" time="0.357"/>
-  <testcase name="testIsMutant_ReturnsFalse_WhenMutantSequenceDoesNotExist()" classname="com.example.PrimerParcial.services.DNAServiceImplTest" time="0.011"/>
-  <testcase name="testIsMutant_ReturnsTrue_WhenMutantSequenceExists()" classname="com.example.PrimerParcial.services.DNAServiceImplTest" time="0.006"/>
+  <testcase name="testIsMutant_ReturnsTrue_WhenDnaExistsInRepository()" classname="com.example.PrimerParcial.services.DNAServiceImplTest" time="0.363"/>
+  <testcase name="testIsMutant_ReturnsFalse_WhenMutantSequenceDoesNotExist()" classname="com.example.PrimerParcial.services.DNAServiceImplTest" time="0.02"/>
+  <testcase name="testIsMutant_ReturnsTrue_WhenMutantSequenceExists()" classname="com.example.PrimerParcial.services.DNAServiceImplTest" time="0.018"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
