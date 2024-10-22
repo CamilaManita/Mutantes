@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.PrimerParcial.services.DNAStatsServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-10-22T03:00:06" hostname="DESKTOP-F5U0FUP" time="0.154">
+<testsuite name="com.example.PrimerParcial.services.DNAStatsServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-10-22T17:55:33" hostname="DESKTOP-F5U0FUP" time="0.015">
   <properties/>
-  <testcase name="testCalcularStats_WithOnlyNonMutantDNA()" classname="com.example.PrimerParcial.services.DNAStatsServiceImplTest" time="0.032"/>
-  <testcase name="testCalcularStats_WithOnlyMutantDNA()" classname="com.example.PrimerParcial.services.DNAStatsServiceImplTest" time="0.018"/>
-  <testcase name="testCalcularStats_WithMutantAndNonMutantDNA()" classname="com.example.PrimerParcial.services.DNAStatsServiceImplTest" time="0.069"/>
+  <testcase name="testCalcularStats_WithOnlyNonMutantDNA()" classname="com.example.PrimerParcial.services.DNAStatsServiceImplTest" time="0.005"/>
+  <testcase name="testCalcularStats_WithOnlyMutantDNA()" classname="com.example.PrimerParcial.services.DNAStatsServiceImplTest" time="0.003"/>
+  <testcase name="testCalcularStats_WithMutantAndNonMutantDNA()" classname="com.example.PrimerParcial.services.DNAStatsServiceImplTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
