@@ -44,7 +44,6 @@ public class DNAServiceImplTest {
     @Test
     public void testIsMutant_ReturnsFalse_WhenMutantSequenceDoesNotExist() throws Exception {
         DNA dna = new DNA();
-        // Esta secuencia no tiene ninguna secuencia de 4 iguales consecutivas
         dna.setDna("ATGCGA,CAGTAC,TTATGT,AGAGTG,CGCAGC,TCTTTG");
 
         when(dnaRepository.findByDna(anyString())).thenReturn(Optional.empty());
@@ -52,7 +51,7 @@ public class DNAServiceImplTest {
 
         boolean isMutant = dnaService.isMutant(dna);
 
-        assertFalse(isMutant); // Se espera que no detecte un mutante
+        assertFalse(isMutant);
         verify(dnaRepository, times(1)).save(any(DNA.class)); // Debería intentar guardar el ADN
     }
 

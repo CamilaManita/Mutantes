@@ -24,10 +24,8 @@ class DNAControllerTest {
 
     @Test
     void detectMutant_ReturnsOk_WhenMutantDetected() throws Exception {
-        // Simulamos que el servicio devuelve true, indicando que es mutante
         Mockito.when(dnaService.isMutant(Mockito.any())).thenReturn(true);
 
-        // Realizamos una petición POST con una secuencia ADN de ejemplo
         mockMvc.perform(post("/api/dna/mutant/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"dna\": [\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"]}"))
