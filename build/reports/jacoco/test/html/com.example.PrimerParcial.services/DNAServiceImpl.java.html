@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DNAServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PrimerParcial</a> &gt; <a href="index.source.html" class="el_package">com.example.PrimerParcial.services</a> &gt; <span class="el_source">DNAServiceImpl.java</span></div><h1>DNAServiceImpl.java</h1><pre class="source lang-java linenums">package com.example.PrimerParcial.services;
+
+import com.example.PrimerParcial.entities.DNA;
+import com.example.PrimerParcial.repositories.DNARepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+<span class="fc" id="L11">public class DNAServiceImpl implements com.example.PrimerParcial.services.DNAService {</span>
+    @Autowired
+    private DNARepository dnaRepository;
+
+    @Override
+    public boolean isMutant(DNA dna) {
+        // Convertimos la secuencia de ADN a String[]
+<span class="fc" id="L18">        String dnaSequence = dna.getDna();</span>
+<span class="pc bpc" id="L19" title="2 of 4 branches missed.">        if (dnaSequence == null || dnaSequence.isEmpty()) {</span>
+<span class="nc" id="L20">            throw new IllegalArgumentException(&quot;DNA sequence cannot be null or empty&quot;);</span>
+        }
+<span class="fc" id="L22">        String[] dnaArray = dnaSequence.split(&quot;,&quot;);</span>
+
+        // Verifica si ya existe en la base de datos
+<span class="fc" id="L25">        Optional&lt;DNA&gt; existingDna = dnaRepository.findByDna(dnaSequence);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (existingDna.isPresent()) {</span>
+<span class="fc" id="L27">            return existingDna.get().isMutant();</span>
+        }
+
+        // Inicializa la lÃ³gica para detecciÃ³n de mutante en una sola pasada
+<span class="fc" id="L31">        boolean mutantDetected = detectMutantInOnePass(dnaArray);</span>
+
+        // Guarda en la base de datos
+<span class="fc" id="L34">        dnaRepository.save(DNA.builder().dna(dnaSequence).isMutant(mutantDetected).build());</span>
+
+<span class="fc" id="L36">        return mutantDetected;</span>
+    }
+
+
+
+    private boolean detectMutantInOnePass(String[] dnaArray) {
+<span class="fc" id="L42">        int n = dnaArray.length;</span>
+<span class="fc" id="L43">        char[][] matrix = convertToMatrix(dnaArray);</span>
+<span class="fc" id="L44">        int mutantSequences = 0;</span>
+
+        // Recorremos la matriz
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            for (int j = 0; j &lt; n; j++) {</span>
+                // Verifica horizontal, vertical y diagonal desde la posiciÃ³n actual
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">                if (checkSequence(matrix, i, j, 0, 1) || // Horizontal</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                    checkSequence(matrix, i, j, 1, 0) || // Vertical</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                    checkSequence(matrix, i, j, 1, 1) || // Diagonal hacia abajo derecha</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">                    checkSequence(matrix, i, j, 1, -1)) // Diagonal hacia abajo izquierda</span>
+                {
+<span class="fc" id="L55">                    mutantSequences++;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">                    if (mutantSequences &gt;= 2) { // Si hay 2 o mÃ¡s secuencias, es mutante</span>
+<span class="fc" id="L57">                        return true;</span>
+                    }
+                }
+            }
+        }
+
+<span class="fc" id="L63">        return false; // Solo es mutante si hay 2 o mÃ¡s secuencias</span>
+    }
+
+    private boolean checkSequence(char[][] matrix, int row, int col, int rowIncrement, int colIncrement) {
+<span class="fc" id="L67">        char startChar = matrix[row][col];</span>
+
+        // Verificar si es posible tener una secuencia de 4 caracteres desde la posiciÃ³n actual
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        for (int k = 1; k &lt; 4; k++) {</span>
+<span class="fc" id="L71">            int newRow = row + k * rowIncrement;</span>
+<span class="fc" id="L72">            int newCol = col + k * colIncrement;</span>
+
+            // Si se sale de los lÃ­mites de la matriz, no hay secuencia
+<span class="pc bpc" id="L75" title="1 of 10 branches missed.">            if (newRow &gt;= matrix.length || newRow &lt; 0 || newCol &gt;= matrix[0].length || newCol &lt; 0 || matrix[newRow][newCol] != startChar) {</span>
+<span class="fc" id="L76">                return false;</span>
+            }
+        }
+
+<span class="fc" id="L80">        return true; // Si se cumple la secuencia de 4 caracteres</span>
+    }
+
+
+    private char[][] convertToMatrix(String[] dna) {
+<span class="fc" id="L85">        int n = dna.length;</span>
+<span class="fc" id="L86">        char[][] matrix = new char[n][n];</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc" id="L88">            matrix[i] = dna[i].toCharArray();</span>
+        }
+<span class="fc" id="L90">        return matrix;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

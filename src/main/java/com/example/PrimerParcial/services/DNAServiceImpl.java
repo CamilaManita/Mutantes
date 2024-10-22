@@ -16,6 +16,9 @@ public class DNAServiceImpl implements com.example.PrimerParcial.services.DNASer
     public boolean isMutant(DNA dna) {
         // Convertimos la secuencia de ADN a String[]
         String dnaSequence = dna.getDna();
+        if (dnaSequence == null || dnaSequence.isEmpty()) {
+            throw new IllegalArgumentException("DNA sequence cannot be null or empty");
+        }
         String[] dnaArray = dnaSequence.split(",");
 
         // Verifica si ya existe en la base de datos
@@ -33,6 +36,8 @@ public class DNAServiceImpl implements com.example.PrimerParcial.services.DNASer
         return mutantDetected;
     }
 
+
+
     private boolean detectMutantInOnePass(String[] dnaArray) {
         int n = dnaArray.length;
         char[][] matrix = convertToMatrix(dnaArray);
@@ -43,37 +48,38 @@ public class DNAServiceImpl implements com.example.PrimerParcial.services.DNASer
             for (int j = 0; j < n; j++) {
                 // Verifica horizontal, vertical y diagonal desde la posición actual
                 if (checkSequence(matrix, i, j, 0, 1) || // Horizontal
-                        checkSequence(matrix, i, j, 1, 0) || // Vertical
-                        checkSequence(matrix, i, j, 1, 1) || // Diagonal hacia abajo derecha
-                        checkSequence(matrix, i, j, 1, -1)) // Diagonal hacia abajo izquierda
+                    checkSequence(matrix, i, j, 1, 0) || // Vertical
+                    checkSequence(matrix, i, j, 1, 1) || // Diagonal hacia abajo derecha
+                    checkSequence(matrix, i, j, 1, -1)) // Diagonal hacia abajo izquierda
                 {
                     mutantSequences++;
-                    if (mutantSequences > 1) return true; // Si encuentra más de 1 secuencia, es mutante
+                    if (mutantSequences >= 2) { // Si hay 2 o más secuencias, es mutante
+                        return true;
+                    }
                 }
             }
         }
 
-        return mutantSequences > 1;
+        return false; // Solo es mutante si hay 2 o más secuencias
     }
 
-    // Método para verificar secuencias consecutivas desde una posición dada
     private boolean checkSequence(char[][] matrix, int row, int col, int rowIncrement, int colIncrement) {
-        int count = 1;
         char startChar = matrix[row][col];
 
-        for (int k = 1; k < 4; k++) { // Buscamos una secuencia de 4 caracteres
+        // Verificar si es posible tener una secuencia de 4 caracteres desde la posición actual
+        for (int k = 1; k < 4; k++) {
             int newRow = row + k * rowIncrement;
             int newCol = col + k * colIncrement;
 
-            if (newRow >= matrix.length || newCol >= matrix[0].length || newCol < 0 || matrix[newRow][newCol] != startChar) {
-                return false; // Si se sale de los límites o no coincide, no hay secuencia
+            // Si se sale de los límites de la matriz, no hay secuencia
+            if (newRow >= matrix.length || newRow < 0 || newCol >= matrix[0].length || newCol < 0 || matrix[newRow][newCol] != startChar) {
+                return false;
             }
-
-            count++;
         }
 
-        return count == 4; // Si encontró una secuencia de 4 caracteres consecutivos
+        return true; // Si se cumple la secuencia de 4 caracteres
     }
+
 
     private char[][] convertToMatrix(String[] dna) {
         int n = dna.length;

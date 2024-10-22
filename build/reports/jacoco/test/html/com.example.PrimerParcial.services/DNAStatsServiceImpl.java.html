@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DNAStatsServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PrimerParcial</a> &gt; <a href="index.source.html" class="el_package">com.example.PrimerParcial.services</a> &gt; <span class="el_source">DNAStatsServiceImpl.java</span></div><h1>DNAStatsServiceImpl.java</h1><pre class="source lang-java linenums">package com.example.PrimerParcial.services;
+
+import com.example.PrimerParcial.entities.DNAStats;
+import com.example.PrimerParcial.repositories.DNARepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+<span class="fc" id="L10">public class DNAStatsServiceImpl implements com.example.PrimerParcial.services.DNAStatsService {</span>
+    @Autowired
+    private DNARepository dnaRepository;
+
+    @Override
+    @Transactional
+    public DNAStats calcularStats() throws Exception {
+<span class="fc" id="L17">        long contadorADNMutante = dnaRepository.countByIsMutant(true);</span>
+<span class="fc" id="L18">        long contadorADNHumano = dnaRepository.countByIsMutant(false);</span>
+        double ratio;
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (contadorADNHumano &gt; 0) {</span>
+<span class="fc" id="L21">            ratio = (double) contadorADNMutante / contadorADNHumano;</span>
+        } else {
+<span class="fc" id="L23">            ratio = 0;</span>
+        }
+
+        // Usamos el patrÃ³n Builder para construir el objeto DNAStats sin el campo id
+<span class="fc" id="L27">        return DNAStats.builder()</span>
+<span class="fc" id="L28">                .mutantCount(contadorADNMutante)</span>
+<span class="fc" id="L29">                .nonMutantCount(contadorADNHumano)</span>
+<span class="fc" id="L30">                .mutantRatio(ratio)</span>
+<span class="fc" id="L31">                .build();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

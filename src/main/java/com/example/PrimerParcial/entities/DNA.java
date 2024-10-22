@@ -22,4 +22,7 @@ public class DNA{
 
     @Column(name = "isMutant")
     private boolean isMutant;
+
+    public DNA(String s) {
+    }
 }

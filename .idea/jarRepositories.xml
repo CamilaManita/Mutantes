@@ -16,5 +16,10 @@
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="jacoco-repo" />
+      <option name="name" value="jacoco-repo" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
   </component>
 </project>
