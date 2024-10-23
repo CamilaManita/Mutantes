@@ -26,7 +26,8 @@ Once the matrix is correctly entered, the function checks for the presence of mu
 
 The project has been deployed on Render and can be accessed via the following link:
 
-https://mutantes-vvyg.onrender.com
+- https://mutantes-vvyg.onrender.com
+- https://mutantes-vvyg.onrender.com/api/dna/stats/calcular/
 
 ### Endpoints
 
